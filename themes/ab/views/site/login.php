@@ -5,15 +5,18 @@
 
 $this->pageTitle=Yii::app()->name . ' - Login';
 $this->breadcrumbs=array(
-	'Login',
 );
 ?>
 
-<h1>Login</h1>
+<div class="container">
 
-<p>Please fill out the following form with your login credentials:</p>
+	<div class="row form-horizontal">
 
-<div class="form">
+		<div class="col-sm-4 col-sm-offset-4">
+
+    <h2 class="form-signin-heading">Login</h2>
+    <p>Please fill out the following form with your login credentials:</p>
+
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
 	'enableClientValidation'=>true,
@@ -22,20 +25,22 @@ $this->breadcrumbs=array(
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<div>
+		<?php echo $form->errorSummary($model, null, null, array('class' => 'alert alert-danger')); ?>
+	</div>
+
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username'); ?>
+		<?php echo $form->textField($model,'username', array('class' => 'form-control', 'placeholder' => "Username")); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
+		<?php //echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->passwordField($model,'password', array('class' => 'form-control', 'placeholder' => "Password")); ?>
 		<?php echo $form->error($model,'password'); ?>
 		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
+			Hint: You may login with <kbd>admin</kbd>/<kbd>admin</kbd>.
 		</p>
 	</div>
 
@@ -46,8 +51,12 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
+		<?php echo CHtml::submitButton('Login', array('class' => 'btn btn-primary')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
+			
+		</div>
+
+	</div>
 </div><!-- form -->

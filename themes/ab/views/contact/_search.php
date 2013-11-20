@@ -1,6 +1,6 @@
 <?php
-/* @var $this AddressBookController */
-/* @var $model AddressBook */
+/* @var $this ContactController */
+/* @var $model Contact */
 /* @var $form CActiveForm */
 ?>
 

@@ -1,15 +1,15 @@
 <?php
-/* @var $this AddressBookController */
-/* @var $model AddressBook */
+/* @var $this ContactController */
+/* @var $model Contact */
 
 $this->breadcrumbs=array(
-	'Address Books'=>array('index'),
+	'Contacts'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List AddressBook', 'url'=>array('index')),
-	array('label'=>'Create AddressBook', 'url'=>array('create')),
+	array('label'=>'List Contact', 'url'=>array('index')),
+	array('label'=>'Create Contact', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#address-book-grid').yiiGridView('update', {
+	$('#contact-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Address Books</h1>
+<h1>Manage Contacts</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,7 +41,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'address-book-grid',
+	'id'=>'contact-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
@@ -50,12 +50,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'email',
 		'phone',
 		'typ',
-		'home_address',
-		/*
-		'photo_name',
-		'fax',
-		'website',
-		*/
+//		array('typ' => array($model->search(), 'typ')),
 		array(
 			'class'=>'CButtonColumn',
 		),

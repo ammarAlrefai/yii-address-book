@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "address_book".
+ * This is the model class for table "contact".
  *
- * The followings are the available columns in table 'address_book':
+ * The followings are the available columns in table 'contact':
  * @property integer $id
  * @property string $name
  * @property string $email
@@ -14,14 +14,14 @@
  * @property string $fax
  * @property string $website
  */
-class AddressBook extends CActiveRecord
+class Contact extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'address_book';
+		return 'contact';
 	}
 
 	/**
@@ -33,13 +33,14 @@ class AddressBook extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, email', 'required'),
+			array('email', 'email'),
 			array('name, home_address', 'length', 'max'=>255),
 			array('email, photo_name, website', 'length', 'max'=>120),
 			array('phone, fax', 'length', 'max'=>32),
-			array('typ', 'length', 'max'=>1),
+			array('typ', 'in', 'range'=>array('P', 'B')),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, email, phone, typ, home_address, photo_name, fax, website', 'safe', 'on'=>'search'),
+			array('id, name, email, phone, typ, fax, website', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -109,7 +110,7 @@ class AddressBook extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return AddressBook the static model class
+	 * @return Contact the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

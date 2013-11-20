@@ -1,6 +1,6 @@
 <?php
 
-class AddressBookController extends Controller
+class ContactController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,14 +62,14 @@ class AddressBookController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new AddressBook;
+		$model=new Contact;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['AddressBook']))
+		if(isset($_POST['Contact']))
 		{
-			$model->attributes=$_POST['AddressBook'];
+			$model->attributes=$_POST['Contact'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +91,9 @@ class AddressBookController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['AddressBook']))
+		if(isset($_POST['Contact']))
 		{
-			$model->attributes=$_POST['AddressBook'];
+			$model->attributes=$_POST['Contact'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +122,7 @@ class AddressBookController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('AddressBook');
+		$dataProvider=new CActiveDataProvider('Contact');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class AddressBookController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new AddressBook('search');
+		$model=new Contact('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['AddressBook']))
-			$model->attributes=$_GET['AddressBook'];
+		if(isset($_GET['Contact']))
+			$model->attributes=$_GET['Contact'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class AddressBookController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return AddressBook the loaded model
+	 * @return Contact the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=AddressBook::model()->findByPk($id);
+		$model=Contact::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class AddressBookController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param AddressBook $model the model to be validated
+	 * @param Contact $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='address-book-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='contact-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
